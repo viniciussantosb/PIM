@@ -1,12 +1,16 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Perdi meu pet</title>
-        <link rel="stylesheet" href="/TelaPrincipal/reset.css">
-        <link rel="stylesheet" href="./style.css">
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perdi meu pet</title>
+    <link rel="stylesheet" href="/TelaPrincipal/reset.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Trazer os links dos icones -->
+    <script src="https://kit.fontawesome.com/7c72460651.js" crossorigin="anonymous"></script>
+</head>
+
     <body>
         <header class="header">
             <a href="#">
@@ -30,7 +34,9 @@
                 <form action="">
                     <div>
                         <p>Imagem do Pet encontrado</p>
-                        <label for="">"Escolher foto"</label>
+                        <label for="fileInput" class="custom-file-label">📂 Selecionar Arquivo</label>
+                        <input type="file" id="fileInput">
+
                         <div class="idadeAproxim">
                             <input type="number" min="0" placeholder="Idade aprox.">
                             <select name="" id="">
@@ -47,7 +53,7 @@
                             </select>
                         </div>
                         <p>Código do chip indentificador (caso houver) </p>
-                        <input class="ChipIdentifica" type="number" min="0" name="" id="">
+                        <input class="ChipIdentifica" type="number" min="0" maxlength="99" name="" id="">
                         <p>Descrição (nos conte mais sobre o Pet)</p>
                         <textarea class="descPet" placeholder="Descreva seu pet" maxlength="400"></textarea>
                         <div class="content-checkbox">
