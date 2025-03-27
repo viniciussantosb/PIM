@@ -1,10 +1,12 @@
+let marker = null; // Variável para armazenar o marcador atual
+let userMarker = null; // Variável para armazenar o marcador da localização do usuário
+
 function initMap() {
     // Verifica se o navegador suporta geolocalização
     if (navigator.geolocation) {
         // Solicita a localização do usuário com alta precisão
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                // Define a localização do usuário como o centro do mapa
                 const userLocation = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
@@ -29,21 +31,84 @@ function initMap() {
                 });
 
                 // Adiciona um marcador na localização do usuário
-                addMarker(userLocation, map);
+                userMarker = new google.maps.Marker({
+                    position: userLocation,
+                    map: map,
+                    icon: {
+                        url: "http://localhost:8000/frontend/TelaPrincipal/img/card1.jpg", // Caminho da imagem
+                        scaledSize: new google.maps.Size(50, 50), // Tamanho do ícone
+                    }
+                });
+
+                // Adiciona marcador ao clicar no mapa
+                google.maps.event.addListener(map, 'click', function(event) {
+                    // Remove o marcador anterior (localização do usuário)
+                    if (userMarker) {
+                        userMarker.setMap(null);
+                    }
+
+                    // Remove o marcador anterior, se existir
+                    if (marker) {
+                        marker.setMap(null);
+                    }
+
+                    // Adiciona um novo marcador com a imagem como ícone
+                    marker = new google.maps.Marker({
+                        position: event.latLng,
+                        map: map,
+                        icon: {
+                            url: "http://localhost:8000/frontend/TelaPrincipal/img/card1.jpg", // Caminho da imagem
+                            scaledSize: new google.maps.Size(50, 50), // Tamanho do ícone
+                        }
+                    });
+                });
+
             },
             (error) => {
                 // Caso ocorra um erro ao obter a localização, exibe uma mensagem de erro
                 handleGeolocationError(error);
+                
                 // Define uma localização padrão (ex: São Paulo) como fallback
                 const defaultLocation = { lat: -23.550520, lng: -46.633308 }; // São Paulo
                 const map = new google.maps.Map(document.getElementById("map"), {
                     center: defaultLocation,
                     zoom: 12,
-                    styles: estiloMapa,
                     streetViewControl: false,
                     mapTypeControl: false,
                 });
-                addMarker(defaultLocation, map); // Adiciona um marcador na localização padrão
+
+                // Adiciona um marcador na localização padrão
+                userMarker = new google.maps.Marker({
+                    position: defaultLocation,
+                    map: map,
+                    icon: {
+                        url: "http://localhost:8000/frontend/TelaPrincipal/img/card1.jpg", // Caminho da imagem
+                        scaledSize: new google.maps.Size(50, 50), // Tamanho do ícone
+                    }
+                });
+
+                // Adiciona marcador ao clicar no mapa
+                google.maps.event.addListener(map, 'click', function(event) {
+                    // Remove o marcador anterior (localização do usuário)
+                    if (userMarker) {
+                        userMarker.setMap(null);
+                    }
+
+                    // Remove o marcador anterior, se existir
+                    if (marker) {
+                        marker.setMap(null);
+                    }
+
+                    // Adiciona um novo marcador com a imagem como ícone
+                    marker = new google.maps.Marker({
+                        position: event.latLng,
+                        map: map,
+                        icon: {
+                            url: "http://localhost:8000/frontend/TelaPrincipal/img/card1.jpg", // Caminho da imagem
+                            scaledSize: new google.maps.Size(50, 50), // Tamanho do ícone
+                        }
+                    });
+                });
             },
             {
                 enableHighAccuracy: true, // Solicita alta precisão
@@ -54,47 +119,65 @@ function initMap() {
     } else {
         // Caso o navegador não suporte geolocalização, exibe uma mensagem de erro
         alert("Seu navegador não suporta geolocalização.");
+        
         // Define uma localização padrão (ex: São Paulo) como fallback
         const defaultLocation = { lat: -23.550520, lng: -46.633308 }; // São Paulo
         const map = new google.maps.Map(document.getElementById("map"), {
             center: defaultLocation,
             zoom: 12,
-            styles: estiloMapa,
             streetViewControl: false,
             mapTypeControl: false,
         });
-        addMarker(defaultLocation, map); // Adiciona um marcador na localização padrão
-    }
 
-    // Função para tratar erros de geolocalização
-    function handleGeolocationError(error) {
-        switch(error.code) {
-            case error.PERMISSION_DENIED:
-                alert("Você negou a solicitação de geolocalização. O mapa será exibido com uma localização padrão.");
-                break;
-            case error.POSITION_UNAVAILABLE:
-                alert("As informações de localização não estão disponíveis. O mapa será exibido com uma localização padrão.");
-                break;
-            case error.TIMEOUT:
-                alert("A solicitação de localização expirou. O mapa será exibido com uma localização padrão.");
-                break;
-            case error.UNKNOWN_ERROR:
-                alert("Ocorreu um erro desconhecido ao tentar obter a localização. O mapa será exibido com uma localização padrão.");
-                break;
-        }
-    }
+        // Adiciona um marcador na localização padrão
+        userMarker = new google.maps.Marker({
+            position: defaultLocation,
+            map: map,
+            icon: {
+                url: "http://localhost:8000/frontend/TelaPrincipal/img/card1.jpg", // Caminho da imagem
+                scaledSize: new google.maps.Size(50, 50), // Tamanho do ícone
+            }
+        });
 
-    // Define o que acontece ao clicar no mapa
-    google.maps.event.addListener(map, 'click', function(event) {
-        addMarker(event.latLng, map);
-    });
+        // Adiciona marcador ao clicar no mapa
+        google.maps.event.addListener(map, 'click', function(event) {
+            // Remove o marcador anterior (localização do usuário)
+            if (userMarker) {
+                userMarker.setMap(null);
+            }
 
-     // Função para adicionar o marcador com o ícone personalizado
-     function addMarker(location, map) {
-        var marker = new google.maps.Marker({
-          position: location,
-          map: map,
+            // Remove o marcador anterior, se existir
+            if (marker) {
+                marker.setMap(null);
+            }
+
+            // Adiciona um novo marcador com a imagem como ícone
+            marker = new google.maps.Marker({
+                position: event.latLng,
+                map: map,
+                icon: {
+                    url: "http://localhost:8000/frontend/TelaPrincipal/img/card1.jpg", // Caminho da imagem
+                    scaledSize: new google.maps.Size(50, 50), // Tamanho do ícone
+                }
+            });
         });
     }
+}
 
+// Função para tratar erros de geolocalização
+function handleGeolocationError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            alert("Você negou a solicitação de geolocalização. O mapa será exibido com uma localização padrão.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            alert("As informações de localização não estão disponíveis. O mapa será exibido com uma localização padrão.");
+            break;
+        case error.TIMEOUT:
+            alert("A solicitação de localização expirou. O mapa será exibido com uma localização padrão.");
+            break;
+        case error.UNKNOWN_ERROR:
+            alert("Ocorreu um erro desconhecido ao tentar obter a localização. O mapa será exibido com uma localização padrão.");
+            break;
+    }
 }

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
+    font-family: 'Poppins', 'sans-serif';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -82,4 +83,27 @@ body {
     width: 100%;
     height: 400px; /* Ajuste a altura conforme necessário */
     border-radius: 8px;
+}
+
+.button-MapFound {
+    padding: 0 10px;
+}
+
+.button-conclude {
+    display: flex;
+    padding: 10px 20px; /* Ajuste o padding para ter um tamanho mais responsivo */
+    margin: 10px auto;
+    width: 100%; /* Faz o botão ocupar 100% da largura disponível */
+    max-width: 600px; /* Limita o tamanho máximo do botão */
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    background-color: #7494ec;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
