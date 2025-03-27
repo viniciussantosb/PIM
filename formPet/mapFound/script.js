@@ -84,11 +84,17 @@ function initMap() {
         }
     }
 
-    // Função para adicionar um marcador no mapa
-    function addMarker(location, map) {
-        new google.maps.Marker({
-            position: location,
-            map: map,
+    // Define o que acontece ao clicar no mapa
+    google.maps.event.addListener(map, 'click', function(event) {
+        addMarker(event.latLng, map);
+    });
+
+     // Função para adicionar o marcador com o ícone personalizado
+     function addMarker(location, map) {
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
         });
     }
+
 }
