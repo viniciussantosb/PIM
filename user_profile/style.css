@@ -117,3 +117,9 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+ul {
+    margin: 20px;
+    list-style-type: disc; /* exibe pontinhos */
+    padding-left: 20px;    /* espaço para o marcador */
+  }
