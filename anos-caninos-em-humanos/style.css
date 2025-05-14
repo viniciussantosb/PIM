@@ -8,6 +8,11 @@
     font-family: 'Poppins', 'sans-serif';
 }
 
+a {
+    text-decoration: dashed ;
+    color: inherit;
+}
+
 body {
     font-family: 'Poppins', 'sans-serif';
     background-color: #f1f1f1 ;
@@ -156,10 +161,16 @@ body {
 }
 
 .img-pet > img{
-    width: 100%;
+    width: 70%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 30px 0;
 }
 
 .fa-solid fa-share {
     margin: 0 20px;
+}
+
+.title-table {
+    font-weight: 500;
+    margin: 40px 0;
 }
