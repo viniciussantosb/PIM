@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encontrei um pet</title>
     <link rel="stylesheet" href="/TelaPrincipal/reset.css">
     <link rel="stylesheet" href="./style.css">
+    <script defer src="script.js"></script>
+
 
     <!-- Trazer os links dos icones -->
     <script src="https://kit.fontawesome.com/7c72460651.js" crossorigin="anonymous"></script>
 </head>
 
-    <body>
-        <header class="header">
-            <a href="#">
-                <img class="logo-header" src="/TelaPrincipal/img/oficial-logo2.png" alt="">
+<body>
+    <header class="header">
+        <a href="#">
+            <img class="logo-header" src="./img/oficial-logo2.png" alt="Logo">
+        </a>
+
+        <nav class="navbar">
+            <a href="/telaMapaPet/index.html" class="active">ENCONTRE SEU PET</a>
+            <a href="#">ADOTE</a>
+            <a href="#">CÃES E FILHOTES</a>
+            <a href="#">OUTROS TIPOS DE ANIMAIS</a>
+            <a href="#">SOBRE</a>
+        </nav>
+
+        <div class="mobile-controls">
+            <a href="../index.html" class="btn" id="loginBtn">
+                <span class="textBtn">
+                    Faça Login
+                </span>
+                <span>
+                    <i class="fa-solid fa-user" id="iconNormal"></i>
+                    <i class="fa-solid fa-user fa-xs" id="xsIcon"></i>
+                </span>
+
             </a>
+            <button class="hamburguer"></button>
+        </div>
+    </header>
 
-            <nav class="navbar">
-                <a href="/telaMapaPet/index.html" class="active">ENCONTRE SEU PET</a>
-                <a href="#">ADOTE</a>
-                <a href="#">CÃES E FILHOTES</a>
-                <a href="#">OUTROS TIPOS DE ANIMAIS</a>
-                <a href="#">SOBRE</a>
-            </nav>
-            <div class="hr-login"></div>
-            <a href="../telaLoginPetSearch/index.html" class="btn">Faça Login</a>
-        </header>
-
-        <div class="container">
+    <div class="container">
+        <div class="contMargin">
             <div class="container-form">
                 <h2>Nos conte mais sobre o Pet</h2>
                 <form action="">
@@ -67,9 +83,11 @@
                 </form>
             </div>
         </div>
-        
+    </div>
 
-       
-        
-    </body>
-    </html>
+
+
+
+</body>
+
+</html>

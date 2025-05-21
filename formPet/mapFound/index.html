@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="script.js">
+    <title>Checklist para adoção</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./reset.css">
+    <script defer src="script.js"></script>
+
+    <!-- Trazer os links dos icones -->
+    <script src="https://kit.fontawesome.com/7c72460651.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header class="header">
         <a href="#">
-            <img class="logo-header" src="/TelaPrincipal/img/oficial-logo2.png" alt="">
+            <img class="logo-header" src="./img/oficial-logo2.png" alt="Logo">
         </a>
 
         <nav class="navbar">
@@ -20,10 +26,22 @@
             <a href="#">OUTROS TIPOS DE ANIMAIS</a>
             <a href="#">SOBRE</a>
         </nav>
-        <div class="hr-login"></div>
-        <a href="../telaLoginPetSearch/index.html" class="btn">Faça Login</a>
+
+        <div class="mobile-controls">
+            <a href="../index.html" class="btn" id="loginBtn">
+                <span class="textBtn">
+                    Faça Login
+                </span>
+                <span>
+                    <i class="fa-solid fa-user" id="iconNormal"></i>
+                    <i class="fa-solid fa-user fa-xs" id="xsIcon"></i>
+                </span>
+
+            </a>
+            <button class="hamburguer"></button>
+        </div>
     </header>
-    
+
     <div class="titleForm">
         <h2>Insira o local em que o Pet foi localizado:</h2>
     </div>
@@ -38,13 +56,15 @@
             </button>
         </div>
     </form>
-    
+
     <!-- Script do Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeShLfVqm2Y_LnFW8MKtzcoMRBbyEZuxQ&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeShLfVqm2Y_LnFW8MKtzcoMRBbyEZuxQ&callback=initMap"
+        async defer></script>
     <!-- Script do mapa -->
     <script src="script.js"></script>
 
 
 
 </body>
+
 </html>

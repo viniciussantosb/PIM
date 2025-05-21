@@ -5,23 +5,21 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    
 }
 
 body {
-    font-family: 'Poppins', 'sans-serif';
-    background-color: #f1f1f1 ;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f1f1f1;
 }
 
 .header {
     display: flex;
     width: 100%;
-    padding: 20px;
+    padding: 15px;
+    height: 100px;
     background: #7494ec;
     justify-content: space-evenly;
     align-items: center;
-    z-index: 100;
-    font-family: 'Poppins', 'sans-serif';
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
 }
 
@@ -31,16 +29,26 @@ body {
     object-fit: cover;
 }
 
-.header .btn {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.navbar a {
+.navbar {
+    display: flex;
     font-size: 18px;
     color: #fff;
     font-weight: 500;
-    margin: 0 10px;
     transition: .3s;
+    flex-direction: row;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+.navbar a {
+    display: flex;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
+    transition: .3s;
+    flex-direction: row;
+    gap: 10px;
+    margin-right: 10px;
 }
 
 .navbar a:hover {
@@ -60,7 +68,148 @@ body {
     color: #7494ec;
     letter-spacing: 1px;
     font-weight: 600;
+    flex-shrink: 0;
+    flex-grow: 0;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;       /* Impede quebra de linha */
+    flex: 0 0 auto;            /* Não encolhe nem cresce */
 }
+
+.hamburguer {
+    border: none;
+    background: none;
+    border-top: 3px solid #fff;
+    cursor: pointer;
+    display: none;
+}
+
+.hamburguer::before,
+.hamburguer::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    margin-top: 5px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.mobile-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Estilos para telas pequenas */
+@media (max-width: 900px) {
+    .header {
+        justify-content: space-between;
+    }
+    
+    .hamburguer {
+        display: block;
+        z-index: 2;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #7494ec;
+        clip-path: circle(100px at 90% -15%);
+        transition: 0.4s ease-in;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;
+        pointer-events: none;
+    }
+
+    .navbar a {
+        font-size: 24px;
+        opacity: 0;
+    }
+
+    .navbar.active {
+        clip-path: circle(2000px at 90% -15%);
+        pointer-events: all;
+    }
+
+    .navbar.active a {
+        opacity: 1;
+    }
+
+    .navbar.active ~ .mobile-controls .hamburguer {
+        position: fixed;
+        top: 26px;
+        right: 16px;
+        border-top-color: transparent;
+    }
+
+    .navbar.active ~ .mobile-controls .hamburguer::before {
+        transform: rotate(135deg);
+    }
+
+    .navbar.active ~ .mobile-controls .hamburguer::after {
+        transform: rotate(-135deg);
+        top: -7px;
+    }
+
+    .navbar.active ~ .mobile-controls .btn {
+        z-index: auto;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.4s;
+    }
+
+    .btn {
+        width: 40px;              /* largura fixa */
+        height: 40px;             /* altura igual à largura */
+        padding: 0;               /* remove o espaçamento interno */
+        background: #fff;
+        border: 2px solid #fff;
+        border-radius: 50%;       /* faz virar um círculo */
+        font-size: 24px;          /* aumenta o tamanho do conteúdo */
+        color: #7494ec;
+        font-weight: 600;
+        display: flex;            /* centraliza o conteúdo */
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        flex: 0 0 auto;
+        z-index: 1;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .textBtn {
+        display: none;
+    }
+
+    #iconNormal {
+        display: none;
+    }
+
+}
+
+/* Estilos para telas grandes */
+@media (min-width: 901px) {
+    .hamburguer {
+        display: none;
+    }
+
+    .mobile-controls .btn {
+        display: inline-block;
+    }
+
+    #xsIcon {
+        display: none;
+    }
+}
+
 
 .background-pet {
     width: 100%;
@@ -107,6 +256,8 @@ body {
     height: 50px;
     display: flex;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+    margin: 0 10px;
+
 }
 
 .background-cont__input .button {
@@ -161,15 +312,15 @@ input:nth-child(2) {
 }
 
 .cards-options {
-    display: flex;
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Centraliza os itens verticalmente */
-    background-color: transparent;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas padrão */
+    gap: 20px;
+    list-style: none;
+    margin: 180px auto 0 auto;
     padding: 10px;
-    gap: 10px; /* Espaçamento entre os itens */
-    list-style: none; /* Remove os marcadores da lista */
-    margin: 0;
-    margin-top: 180px;
+    max-width: 1200px;
+    width: 50%;
+    justify-items: center; /* Centraliza os cards dentro das colunas */
 }
 
 .cards-options li {
@@ -179,17 +330,20 @@ input:nth-child(2) {
     border-radius: 10px;
     text-align: center;
     height: 150px;
-    width: 150px;
-    transition: background-color 0.3s ease, transform 0.2s ease, border 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
-    border: 2px solid transparent; /* Borda inicial */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra leve inicial */
+    width: 100%; /* Ocupa toda a célula do grid */
+    max-width: 200px; /* Evita que fique muito largo */
+    transition: background-color 0.3s ease, transform 0.2s ease, border 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
-    font-family: 'Poppins', 'sans-serif';
+    font-family: 'Poppins', sans-serif;
     font-weight: 300;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
 }
+
 .cards-options li:hover{
     border-color: #7494ec;
     border: 2px solid #7494ec;
@@ -198,13 +352,28 @@ input:nth-child(2) {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Aumenta a sombra no hover */
 }
 
+/* 2 colunas em telas médias */
+@media (max-width: 1024px) {
+    .cards-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 1 coluna em telas pequenas */
+@media (max-width: 600px) {
+    .cards-options {
+        grid-template-columns: 1fr;
+    }
+}
+
 .fa-solid {
 padding: 10px;
 color: #7494ec;
 
 }
-
-
+.grid-options {
+    display: grid;
+}
 .recommended-card {
     color: #7494ec;   
     width: 100%;
@@ -221,12 +390,26 @@ color: #7494ec;
 
 .container-grid-recommended .grid-options {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* padrão: 4 colunas */
     gap: 20px;
-    justify-content: center;
-    margin: 10px 50px 10px 50px;
-    align-items: stretch; /* Faz todos terem a mesma altura */
+    margin: 10px 50px;
+    align-items: stretch;
 }
+
+/* Telas até 1024px: 2 colunas */
+@media (max-width: 1024px) {
+    .container-grid-recommended .grid-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Telas até 600px: 1 coluna */
+@media (max-width: 600px) {
+    .container-grid-recommended .grid-options {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 .container-grid-recommended .grid-options .card {
     display: flex;

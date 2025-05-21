@@ -1,196 +1,405 @@
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        text-decoration: none;
-        
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
 
-    .container {
-        padding: 20px;
-    }
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f1f1f1;
+}
 
-    body {
-        font-family: 'Poppins', 'sans-serif';
-        background-color: #f1f1f1 ;
-    }
+.header {
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    height: 100px;
+    background: #7494ec;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
 
+.logo-header {
+    width: 200px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.navbar,
+a {
+    display: flex;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
+    transition: .3s;
+    flex-direction: row;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+.navbar a:hover {
+    color: #42c1e8;
+}
+
+.navbar a.active {
+    font-weight: 700;
+}
+
+.btn {
+    padding: 10px 30px;
+    background: #fff;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #7494ec;
+    letter-spacing: 1px;
+    font-weight: 600;
+    flex-shrink: 0;
+    flex-grow: 0;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    /* Impede quebra de linha */
+    flex: 0 0 auto;
+    /* Não encolhe nem cresce */
+}
+
+.hamburguer {
+    border: none;
+    background: none;
+    border-top: 3px solid #fff;
+    cursor: pointer;
+    display: none;
+}
+
+.hamburguer::before,
+.hamburguer::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    margin-top: 5px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.mobile-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Estilos para telas pequenas */
+@media (max-width: 900px) {
     .header {
-        display: flex;
-        width: 100%;
-        padding: 20px;
-        background: #7494ec;
-        justify-content: space-evenly;
+        justify-content: space-between;
+    }
+
+    .hamburguer {
+        display: block;
+        z-index: 2;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #7494ec;
+        clip-path: circle(100px at 90% -15%);
+        transition: 0.4s ease-in;
+        flex-direction: column;
+        justify-content: space-around;
         align-items: center;
-        z-index: 100;
-        font-family: 'Poppins', 'sans-serif';
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-    }
-
-    .logo-header {
-        width: 200px;
-        height: 50px;
-        object-fit: cover;
-    }
-
-    .header .btn {
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        gap: 0;
+        pointer-events: none;
     }
 
     .navbar a {
-        font-size: 18px;
-        color: #fff;
-        font-weight: 500;
-        margin: 0 10px;
-        transition: .3s;
+        font-size: 24px;
+        opacity: 0;
     }
 
-    .navbar a:hover {
-        color: #42c1e8;
+    .navbar.active {
+        clip-path: circle(2000px at 90% -15%);
+        pointer-events: all;
     }
 
-    .navbar a.active {
-        font-weight: 700;
+    .navbar.active a {
+        opacity: 1;
+    }
+
+    .navbar.active~.mobile-controls .hamburguer {
+        position: fixed;
+        top: 26px;
+        right: 16px;
+        border-top-color: transparent;
+    }
+
+    .navbar.active~.mobile-controls .hamburguer::before {
+        transform: rotate(135deg);
+    }
+
+    .navbar.active~.mobile-controls .hamburguer::after {
+        transform: rotate(-135deg);
+        top: -7px;
+    }
+
+    .navbar.active~.mobile-controls .btn {
+        z-index: auto;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.4s;
     }
 
     .btn {
-        padding: 10px 30px;
+        width: 40px;
+        /* largura fixa */
+        height: 40px;
+        /* altura igual à largura */
+        padding: 0;
+        /* remove o espaçamento interno */
         background: #fff;
         border: 2px solid #fff;
-        border-radius: 20px;
-        font-size: 16px;
+        border-radius: 50%;
+        /* faz virar um círculo */
+        font-size: 24px;
+        /* aumenta o tamanho do conteúdo */
         color: #7494ec;
-        letter-spacing: 1px;
         font-weight: 600;
-    }
-
-    
-    .container-form > h2 {
-        text-align: center;
-        font-weight: 600;
-        color: #f1f1f1;
-        font-size: large;
-        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .container-form {
         display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        max-width: 500px;
-        margin: 5vh auto;
-        padding: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-        gap: 20px;
-        background-color: #7494ec;
-        color: #f1f1f1;
-        font: 500;
-        border-radius: 10px;
-    }
-
-    input[type="file"] {
-        display: none;
-      }
-
-
-    .idadeAproxim {
-        width: 100%; /* Faz a div ocupar toda a largura do container */
-        display: flex; /* Ativa o Flexbox */
-        gap: 10px; /* Espaço entre os elementos */
-        margin-top: 20px;
-    }
-    /* Para Chrome, Safari, Edge e outros navegadores WebKit, remover setas do input */
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-    }
-
-    .idadeAproxim input {
-        flex: 4; /* Ocupa mais espaço */
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 8px;
-        border: none;
-        outline: none;
-        font-family: 'Poppins', 'sans-serif';
-        color: #333;
-    }
-
-    .idadeAproxim select {
-        flex: 1; /* Ocupa menos espaço */
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 8px;
-        border: none;
-        font-family: 'Poppins', 'sans-serif';
-        color: #333;
-    }
-
-    .sexoPet {
-        width: 100%; /* A div ocupa toda a largura disponível */
-    }
-
-    .sexoPet select {
-        width: 100%; /* Faz o select ocupar toda a largura da div */
-        padding: 10px; /* Adiciona um espaçamento interno */
-        font-size: 16px; /* Ajusta o tamanho do texto */
-        border-radius: 8px;
-        border: none;
-        font-weight: 400px;
-        font-family: 'Poppins', 'sans-serif';
-        color: #333;
-    }
-
-    .ChipIdentifica {
-        width: 100%;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        font-family: 'Poppins', 'sans-serif';
-        color: #333;
-        font-weight: 500;
-    }
-
-    .descPet {
-        width: 100%; /* Ocupa toda a largura disponível */
-        height: 200px; /* Altura fixa */
-        padding: 10px;
-        resize: none; /* Impede o redimensionamento */
-        overflow-y: auto; /* Permite rolagem apenas verticalmente se necessário */
-        box-sizing: border-box; /* Garante que padding não afete o tamanho */
-        font-size: 16px; /* Ajusta o tamanho da fonte */
-        border-radius: 8px;
-        border: none;
-        font-family: 'Poppins', 'sans-serif';
-        color: #333;
-        font-weight: 500;
-    }
-
-    .content-checkbox {
-        margin: 10px 0;
-    }
-
-    .submitForm {
-        margin: 20px 0 0 0;
-        width: 100%;
-    }
-
-    .button-submitForm {
-        width: 100%;
-        border-radius: 10px;
-        border: none;
-        font-family: 'Poppins', 'sans-serif';
-        color: #333;
-        padding: 10px;
-        font-weight: 700;
-        background-color: #f1f1f1;
-        color: #7494ec;
+        /* centraliza o conteúdo */
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        flex: 0 0 auto;
+        z-index: 1;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
-    
-    p {
-        margin: 10px 0;
+
+    .textBtn {
+        display: none;
     }
 
+    #iconNormal {
+        display: none;
+    }
+
+}
+
+/* Estilos para telas grandes */
+@media (min-width: 901px) {
+    .hamburguer {
+        display: none;
+    }
+
+    .mobile-controls .btn {
+        display: inline-block;
+    }
+
+    #xsIcon {
+        display: none;
+    }
+}
+
+
+.container {
+    background-color: #e0e0e0;
+    margin: 30px 0;
+    padding: 1px 0;
+}
+
+.titleForm {
+    text-align: center;
+    color: #7494ec;
+    text-shadow: 0px 1px 5px rgba(255, 255, 255, 0.3);
+    margin: 20px 0;
+}
+
+.container .mapa {
+    width: 100%;
+    height: 400px;
+    /* Ajuste a altura conforme necessário */
+    border-radius: 8px;
+}
+
+.button-MapFound {
+    padding: 0 10px;
+}
+
+.button-conclude {
+    display: flex;
+    padding: 10px 20px;
+    /* Ajuste o padding para ter um tamanho mais responsivo */
+    margin: 10px auto;
+    width: 100%;
+    /* Faz o botão ocupar 100% da largura disponível */
+    max-width: 600px;
+    /* Limita o tamanho máximo do botão */
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    background-color: #7494ec;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.container-form>h2 {
+    text-align: center;
+    font-weight: 600;
+    color: #f1f1f1;
+    font-size: large;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.contMargin {
+    margin: 10px;
+}
+
+.container-form {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 5vh auto;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    gap: 20px;
+    background-color: #7494ec;
+    color: #f1f1f1;
+    font: 500;
+    border-radius: 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+
+.idadeAproxim {
+    width: 100%;
+    /* Faz a div ocupar toda a largura do container */
+    display: flex;
+    /* Ativa o Flexbox */
+    gap: 10px;
+    /* Espaço entre os elementos */
+    margin-top: 20px;
+}
+
+/* Para Chrome, Safari, Edge e outros navegadores WebKit, remover setas do input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.idadeAproxim input {
+    flex: 4;
+    /* Ocupa mais espaço */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', 'sans-serif';
+    color: #333;
+}
+
+.idadeAproxim select {
+    flex: 1;
+    /* Ocupa menos espaço */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Poppins', 'sans-serif';
+    color: #333;
+}
+
+.sexoPet {
+    width: 100%;
+    /* A div ocupa toda a largura disponível */
+}
+
+.sexoPet select {
+    width: 100%;
+    /* Faz o select ocupar toda a largura da div */
+    padding: 10px;
+    /* Adiciona um espaçamento interno */
+    font-size: 16px;
+    /* Ajusta o tamanho do texto */
+    border-radius: 8px;
+    border: none;
+    font-weight: 400px;
+    font-family: 'Poppins', 'sans-serif';
+    color: #333;
+}
+
+.ChipIdentifica {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Poppins', 'sans-serif';
+    color: #333;
+    font-weight: 500;
+}
+
+.descPet {
+    width: 100%;
+    /* Ocupa toda a largura disponível */
+    height: 200px;
+    /* Altura fixa */
+    padding: 10px;
+    resize: none;
+    /* Impede o redimensionamento */
+    overflow-y: auto;
+    /* Permite rolagem apenas verticalmente se necessário */
+    box-sizing: border-box;
+    /* Garante que padding não afete o tamanho */
+    font-size: 16px;
+    /* Ajusta o tamanho da fonte */
+    border-radius: 8px;
+    border: none;
+    font-family: 'Poppins', 'sans-serif';
+    color: #333;
+    font-weight: 500;
+}
+
+.content-checkbox {
+    margin: 10px 0;
+}
+
+.submitForm {
+    margin: 20px 0 0 0;
+    width: 100%;
+}
+
+.button-submitForm {
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Poppins', 'sans-serif';
+    color: #333;
+    padding: 10px;
+    font-weight: 700;
+    background-color: #f1f1f1;
+    color: #7494ec;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+p {
+    margin: 10px 0;
+}
